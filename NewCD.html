@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A New Learning Hub is Coming</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 6px 0 10px;
+  }
+  .time-box {
+    display: inline-block;
+    margin: 0 8px;
+  }
+  .time-box span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .time-box label {
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+  <h2>A New Learning Hub is Coming</h2>
+  <div id="timer">
+    <div class="time-box"><span id="days">0</span><label>Days</label></div>
+    <div class="time-box"><span id="hours">0</span><label>Hours</label></div>
+    <div class="time-box"><span id="minutes">0</span><label>Minutes</label></div>
+    <div class="time-box"><span id="seconds">0</span><label>Seconds</label></div>
+  </div>
+
+<script>
+(function(){
+  // 25 Sept 2025 09:00 AEST (UTC+10)
+  var targetDate = new Date(Date.UTC(2025, 8, 24, 23, 0, 0));
+
+  function updateCountdown() {
+    var now = new Date().getTime();
+    var distance = targetDate - now;
+    if (distance < 0) {
+      document.getElementById("timer").innerHTML = "LAUNCHED!";
+      return;
+    }
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
+</body>
+</html>
